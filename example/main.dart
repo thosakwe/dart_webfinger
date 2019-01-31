@@ -1,19 +1,11 @@
-import 'dart:io';
 import 'package:angel_framework/angel_framework.dart';
 import 'package:angel_framework/http.dart';
-import 'package:angel_framework/http2.dart';
 import 'package:logging/logging.dart';
 import 'package:webfinger/webfinger.dart';
 
 main() async {
   var app = Angel();
-  var ctx = new SecurityContext()
-    ..useCertificateChain('dev.pem')
-    ..usePrivateKey('dev.key', password: 'dartdart')
-    ..setAlpnProtocols(['h2'], true);
   var http = AngelHttp(app);
-  var http2 = AngelHttp2(app, ctx);
-
   app.logger = Logger('webfinger')
     ..onRecord.listen((rec) {
       print(rec);
@@ -62,7 +54,6 @@ main() async {
   });
 
   // Start listening...
-  http2.onHttp1.listen(http.handleRequest);
   await http.startServer('127.0.0.1', 3000);
   print('Listening at ${http.uri}');
 }
