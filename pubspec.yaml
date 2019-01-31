@@ -1,0 +1,14 @@
+name: webfinger
+version: 1.0.0
+description: Dart support for the Webfinger protocol, including serialization.
+author: Tobe O <thosakwe@gmail.com>
+homepage: https://github.com/thosakwe/dart_webfinger
+environment:
+  sdk: ">=2.0.0-dev <3.0.0"
+dependencies:
+  http_parser: ^3.0.0
+  meta: ^1.0.0
+dev_dependencies:
+  angel_framework: ^2.0.0-alpha
+  logging:
+  test: ^1.0.0
